@@ -6,7 +6,7 @@ import '../services/weather.dart';
 class LocationScreen extends StatefulWidget {
   LocationScreen({@required this.locationWeatherData});
 
-  final locationWeatherData;
+  final  locationWeatherData;
 
   @override
   _LocationScreenState createState() => _LocationScreenState();
@@ -19,7 +19,6 @@ class _LocationScreenState extends State<LocationScreen> {
   @override
   void initState() {
     super.initState();
-    log(widget.locationWeatherData.toString());
     updateUI(widget.locationWeatherData);
   }
   int temperature;
@@ -29,7 +28,7 @@ class _LocationScreenState extends State<LocationScreen> {
 
   updateUI(dynamic weatherData) {
     setState(() {
-      double temp = weatherData['main']['temp'];
+      var temp = weatherData['main']['temp'];
       temperature = temp.toInt();
       var condition = weatherData['weather'][0]['id'];
       weatherIcon = weatherModel.getWeatherIcon(condition);
@@ -60,7 +59,10 @@ class _LocationScreenState extends State<LocationScreen> {
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: <Widget>[
                   FlatButton(
-                    onPressed: () {},
+                    onPressed: () async{
+                      var weatherData = await weatherModel.getWeatherData();
+                      updateUI(weatherData);
+                    },
                     child: Icon(
                       Icons.near_me,
                       size: 50.0,
