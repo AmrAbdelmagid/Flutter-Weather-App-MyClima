@@ -2,7 +2,7 @@
     package="com.example.my_clima_app">
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
     <application
-        android:label="my_clima_app"
+        android:label="Clima"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"
